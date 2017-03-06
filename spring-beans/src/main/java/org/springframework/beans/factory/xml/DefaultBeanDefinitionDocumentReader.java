@@ -179,18 +179,24 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		}
 	}
 
+	//解析Spring的Bean规则默认元素节点 
 	private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) {
+		//improt元素节点
 		if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) {
 			importBeanDefinitionResource(ele);
 		}
+		//解析alias节点
 		else if (delegate.nodeNameEquals(ele, ALIAS_ELEMENT)) {
 			processAliasRegistration(ele);
 		}
+		//解析bean节点
 		else if (delegate.nodeNameEquals(ele, BEAN_ELEMENT)) {
 			processBeanDefinition(ele, delegate);
 		}
 		else if (delegate.nodeNameEquals(ele, NESTED_BEANS_ELEMENT)) {
 			// recurse
+			// recurse 递归
+			//解析beans节点
 			doRegisterBeanDefinitions(ele);
 		}
 	}
